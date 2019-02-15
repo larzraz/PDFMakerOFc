@@ -1,0 +1,67 @@
+﻿<Window x:Class="PDFMakerOFc.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PDFMakerOFc"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:PDFOFCDataSet x:Key="pDFOFCDataSet"/>
+        <CollectionViewSource x:Key="teamsViewSource" Source="{Binding Teams, Source={StaticResource pDFOFCDataSet}}"/>
+        <CollectionViewSource x:Key="playersViewSource" Source="{Binding Players, Source={StaticResource pDFOFCDataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource teamsViewSource}">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="155,230,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <Label Content="Kampnummer:" HorizontalAlignment="Left" Height="26" Margin="68,45,0,0" VerticalAlignment="Top" Width="104"/>
+        <TextBox x:Name="MatchNo_Label" HorizontalAlignment="Left" Height="26" Margin="172,45,0,0" TextWrapping="Wrap" Text="Kampnummer" VerticalAlignment="Top" Width="144"/>
+        <Label x:Name="MatchNo_label" Content="Kampnummer:" HorizontalAlignment="Left" Height="26" Margin="68,45,0,0" VerticalAlignment="Top" Width="104"/>
+        <Label x:Name="Team_label" Content="Hold:" HorizontalAlignment="Left" Height="26" Margin="68,76,0,0" VerticalAlignment="Top" Width="104"/>
+        <Label x:Name="Date_Label" Content="Dato:" HorizontalAlignment="Left" Height="26" Margin="491,45,0,0" VerticalAlignment="Top" Width="104"/>
+        <Calendar x:Name="Date_calendar" HorizontalAlignment="Left" Height="163" Margin="600,45,0,0" VerticalAlignment="Top" Width="184"/>
+        <Button x:Name="GenerateList_Button" Content="Generer Liste" HorizontalAlignment="Left" Height="38" Margin="672,315,0,0" VerticalAlignment="Top" Width="112" Click="GenerateList_Button_Click"/>
+        <Button x:Name="CreatePDF_Button" Content="Lav PDF" HorizontalAlignment="Left" Height="38" Margin="672,372,0,0" VerticalAlignment="Top" Width="112"/>
+        <DataGrid x:Name="playersDataGrid"  AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource playersViewSource}}"  Margin="68,166,237.6,54" RowDetailsVisibilityMode="VisibleWhenSelected" >
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <CheckBox IsChecked="{Binding Path=IsSelected, Mode=TwoWay,
+                  RelativeSource={RelativeSource FindAncestor,
+                  AncestorType={x:Type DataGridRow}}}"/>
+                    </Grid>
+                </DataTemplate> 
+            </DataGrid.RowHeaderTemplate>
+            <DataGrid.Columns>
+
+                <DataGridTextColumn x:Name="numberColumn" Binding="{Binding Number}" Header="Number" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToCells"/>
+                
+                <DataGridTemplateColumn x:Name="birthdateColumn" Header="Birthdate" Width="SizeToCells">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Birthdate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridCheckBoxColumn x:Name="isGoalieColumn" Binding="{Binding IsGoalie}" Header="Målmand" Width="SizeToHeader"/>
+                <DataGridCheckBoxColumn x:Name="isCaptainColumn" Binding="{Binding IsCaptain}" Header="Anfører" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox x:Name="teamsComboBox" DisplayMemberPath="TeamName" ItemsSource="{Binding}" Margin="172,84,449.6,302" SelectedValuePath="TeamID">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
+    </Grid>
+</Window>
