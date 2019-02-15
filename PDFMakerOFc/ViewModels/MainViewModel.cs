@@ -14,7 +14,11 @@ namespace PDFMakerOFc.ViewModels
         public List<Player> players;
         public List<Team> teams;
         public ObservableCollection<Player> Player { get; set; } 
-        public ObservableCollection<Team> Team;
+        public ObservableCollection<Team> Team { get; set; }
+        public int MatchNo { get; set; }
+        public DateTime MatchDate { get; set; }
+        public string TeamNameString { get; set; }
+
 
         public MainViewModel()
         {

@@ -11,7 +11,9 @@
         <mvm:MainViewModel/>
     </Window.DataContext>
     <Grid>
-        <DataGrid ItemsSource="{Binding Player}" HorizontalAlignment="Left" Height="166" Margin="136,148,0,0" VerticalAlignment="Top" Width="471"/>
+        <DataGrid ItemsSource="{Binding Player}" HorizontalAlignment="Left" Height="94" Margin="54,200,0,0" VerticalAlignment="Top" Width="471"/>
+        <ComboBox ItemsSource="{Binding Team}" DisplayMemberPath="TeamName" HorizontalAlignment="Left" Height="78" Margin="194,36,0,0" VerticalAlignment="Top" Width="255"/>
+        <DataGrid ItemsSource="{Binding Team}" HorizontalAlignment="Left" Height="71" Margin="59,319,0,0" VerticalAlignment="Top" Width="575"/>
 
     </Grid>
 </Window>

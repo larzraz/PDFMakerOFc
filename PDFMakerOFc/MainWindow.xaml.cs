@@ -27,6 +27,10 @@ namespace PDFMakerOFc
             InitializeComponent();
             this.DataContext = new MainViewModel();
         }
+        public int MatchNo { get; set; }
+        public DateTime MatchDate { get; set; }
+        public string TeamNameString { get; set; }
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -46,15 +50,9 @@ namespace PDFMakerOFc
 
         private void GenerateList_Button_Click(object sender, RoutedEventArgs e)
         {
-            //List<Player> selectedPlayers = playersDataGrid.SelectedItems.Cast<Player>().ToList();
-            string text = "";
-            foreach(var player in playersDataGrid.SelectedItems)
-            { text += player.GetType().ToString(); }
-            
-            
-            
-
-
+            List<Player> selectedPlayers = playersDataGrid.SelectedItems.Cast<Player>().ToList();
+            MatchNo = Int32.Parse(MatchNo_TextBox.Text);
+            MatchDate = Date_calendar.DisplayDate;                     
         }
     }
 }
