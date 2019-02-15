@@ -13,13 +13,15 @@ namespace PDFMakerOFc.ViewModels
         DataContext db = new DataContext();
         public List<Player> players;
         public List<Team> teams;
-        public ObservableCollection<Player> Player;
+        public ObservableCollection<Player> Player { get; set; } 
         public ObservableCollection<Team> Team;
 
         public MainViewModel()
         {
             players = db.Players.ToList();
             teams = db.Teams.ToList();
+            Player = new ObservableCollection<Player>(players);
+            Team = new ObservableCollection<Team>(teams);
         }
 
     }
