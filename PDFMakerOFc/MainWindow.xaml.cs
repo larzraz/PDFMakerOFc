@@ -58,6 +58,8 @@ namespace PDFMakerOFc
             TeamNameString = teamsComboBox.Text;
             string pathToFile = "C:/Users/Larz/Desktop/OFCEFBSS.pdf";
 
+            List<Player> selectedPlayersWithoutGoalieAndC = playersDataGrid.SelectedItems.Cast<Player>().Where(x => x.IsCaptain == false).Where(x => x.IsGoalie == false).OrderBy(x => x.Number).ToList();
+
             using (PdfDocument pdf = new PdfDocument("C:/Users/Larz/Desktop/OFCEFBS.pdf"))
             {
                 foreach (PdfControl control in pdf.GetControls())
@@ -94,6 +96,9 @@ namespace PDFMakerOFc
                         case "Kampnr":
                             ((PdfTextBox)control).Text = " " + MatchNo.ToString();
                             break;
+                        case "Dato":
+                            ((PdfTextBox)control).Text = " " + MatchDate.ToString("dd-MM-yy");
+                            break;
                         case "HN1":
                             foreach (var player in selectedPlayers)
                             {
@@ -116,9 +121,62 @@ namespace PDFMakerOFc
                             }
                             break;
 
+                        case "HF1":
+                            foreach (var player in selectedPlayers)
+                            {
+                                if (player.IsCaptain == true)
+                                {
+                                    ((PdfTextBox)control).Text = " " + player.Birthdate.ToString("dd-MM-yy"); 
+                                    break;
+                                }
+                            }
+                            break;
+
+                        case "HN2":
+                            foreach (var player in selectedPlayers)
+                            {
+                                if (player.IsGoalie == true)
+                                {
+                                    ((PdfTextBox)control).Text = player.Number.ToString();
+                                    break;
+                                }
+                            }
+                            break;
+
+                        case "HS2":
+                            foreach (var player in selectedPlayers)
+                            {
+                                if (player.IsGoalie == true)
+                                {
+                                    ((PdfTextBox)control).Text = " " + player.Name;
+                                    break;
+                                }
+                            }
+                            break;
+
+                        case "HF2":
+                            foreach (var player in selectedPlayers)
+                            {
+                                if (player.IsGoalie == true)
+                                {
+                                    ((PdfTextBox)control).Text = " " + player.Birthdate.ToString("dd-MM-yy");
+                                    break;
+                                }
+                            }
+                            break;
+
                     }
                 }
-
+                for(int i =0 ; i < selectedPlayersWithoutGoalieAndC.Count(); i++)
+                {
+                    string numberString = "HN" + (i + 3);
+                    PdfControl number = pdf.GetControl(numberString);
+                    ((PdfTextBox)number).Text = selectedPlayersWithoutGoalieAndC[i].Number.ToString();
+                    PdfControl name = pdf.GetControl("HS" + (i+3));
+                    ((PdfTextBox)name).Text = " " + selectedPlayersWithoutGoalieAndC[i].Name;
+                    PdfControl birthdate = pdf.GetControl("HF" + (i+3));
+                    ((PdfTextBox)birthdate).Text = " " + selectedPlayersWithoutGoalieAndC[i].Birthdate.ToString("dd-MM-yy");
+                }
                 pdf.Save(pathToFile);
             }
         }
