@@ -31,7 +31,6 @@
         <Label x:Name="MatchNo_label" Content="Kampnummer:" HorizontalAlignment="Left" Height="26" Margin="68,45,0,0" VerticalAlignment="Top" Width="104"/>
         <Label x:Name="Team_label" Content="Hold:" HorizontalAlignment="Left" Height="26" Margin="68,76,0,0" VerticalAlignment="Top" Width="104"/>
         <Label x:Name="Date_Label" Content="Dato:" HorizontalAlignment="Left" Height="26" Margin="491,45,0,0" VerticalAlignment="Top" Width="104"/>
-        <Calendar x:Name="Date_calendar" DisplayDate="{Binding MatchDate}"  HorizontalAlignment="Left" Height="163" Margin="600,45,0,0" VerticalAlignment="Top" Width="184"/>
         <Button x:Name="GenerateList_Button" Content="Generer Liste" HorizontalAlignment="Left" Height="38" Margin="672,315,0,0" VerticalAlignment="Top" Width="112" Click="GenerateList_Button_Click"/>
         <Button x:Name="CreatePDF_Button" Content="Lav PDF" HorizontalAlignment="Left" Height="38" Margin="672,372,0,0" VerticalAlignment="Top" Width="112"/>
         <DataGrid x:Name="playersDataGrid"  AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Player}"  Margin="68,166,237.6,43" RowDetailsVisibilityMode="VisibleWhenSelected" >
@@ -68,5 +67,6 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
+        <Calendar x:Name="Match_calendar" HorizontalAlignment="Left" Height="173" Margin="580,40,0,0" VerticalAlignment="Top" Width="191"/>
     </Grid>
 </Window>

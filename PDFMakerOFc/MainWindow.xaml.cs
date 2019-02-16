@@ -52,7 +52,8 @@ namespace PDFMakerOFc
         {
             List<Player> selectedPlayers = playersDataGrid.SelectedItems.Cast<Player>().ToList();
             MatchNo = Int32.Parse(MatchNo_TextBox.Text);
-            MatchDate = Date_calendar.DisplayDate;                     
+            MatchDate = Match_calendar.DisplayDate;
+            TeamNameString = teamsComboBox.Text;
         }
     }
 }

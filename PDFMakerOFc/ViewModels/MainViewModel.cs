@@ -26,6 +26,7 @@ namespace PDFMakerOFc.ViewModels
             teams = db.Teams.ToList();
             Player = new ObservableCollection<Player>(players);
             Team = new ObservableCollection<Team>(teams);
+            MatchDate = DateTime.Now;
         }
 
     }
