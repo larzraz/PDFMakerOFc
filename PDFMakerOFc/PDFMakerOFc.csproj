@@ -38,6 +38,9 @@
     <Reference Include="Aspose.PDF, Version=19.1.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
       <HintPath>..\packages\Aspose.PDF.19.1.0\lib\net4.0\Aspose.PDF.dll</HintPath>
     </Reference>
+    <Reference Include="BitMiracle.Docotic.Pdf, Version=5.7.9231.0, Culture=neutral, PublicKeyToken=221650e173990c07, processorArchitecture=MSIL">
+      <HintPath>..\packages\BitMiracle.Docotic.Pdf.5.7.9231\lib\net40\BitMiracle.Docotic.Pdf.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
